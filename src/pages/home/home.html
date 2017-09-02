@@ -3,16 +3,52 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Accommodations Lisr</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="newAccommodation.street" placholder="Street"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-input type="number" [(ngModel)]="newAccommodation.number" placholder="Number"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-9>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="newAccommodation.city" placholder="City"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-input type="text" [(ngModel)]="newAccommodation.zipCode" placholder="ZIP Code"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="newAccommodation.policeID" placholder="Police Registration Number"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <button ion-button (click)="addAccommodation()">Add!</button>
+  </ion-row>
+  <ion-list>
+    <ion-item-sliding *ngFor="let a of accomodationsList | async">
+      <ion-item>
+        <h1>{{ a.$value.street }}, {{ a.$value.number }}</h1>
+        <p>{{ a.$value.city }} ({{ a.$value.zipCode }})</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" icon-only (click)="removeAccommodation(a.$key)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
