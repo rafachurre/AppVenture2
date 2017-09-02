@@ -3,35 +3,44 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Accommodations Lisr</ion-title>
+    <ion-title>Accommodations List</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-row>
-    <ion-col>
+    <ion-col col-8>
       <ion-item>
-        <ion-input type="text" [(ngModel)]="newAccommodation.street" placholder="Street"></ion-input>
+        <ion-label floating>Street</ion-label>
+        <ion-input type="text" [(ngModel)]="newAccommodation.street"></ion-input>
       </ion-item>
     </ion-col>
-    <ion-col>
-      <ion-input type="number" [(ngModel)]="newAccommodation.number" placholder="Number"></ion-input>
+    <ion-col col-4>
+      <ion-item>
+        <ion-label floating>Number</ion-label>
+        <ion-input type="text" [(ngModel)]="newAccommodation.number"></ion-input>
+      </ion-item>
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col col-9>
+    <ion-col col-8>
       <ion-item>
-        <ion-input type="text" [(ngModel)]="newAccommodation.city" placholder="City"></ion-input>
+        <ion-label floating>City</ion-label>
+        <ion-input type="text" [(ngModel)]="newAccommodation.city"></ion-input>
       </ion-item>
     </ion-col>
-    <ion-col>
-      <ion-input type="text" [(ngModel)]="newAccommodation.zipCode" placholder="ZIP Code"></ion-input>
+    <ion-col col-4>
+      <ion-item>
+        <ion-label floating>ZIP Code</ion-label>
+        <ion-input type="text" [(ngModel)]="newAccommodation.zipCode"></ion-input>
+      </ion-item>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col>
       <ion-item>
-        <ion-input type="text" [(ngModel)]="newAccommodation.policeID" placholder="Police Registration Number"></ion-input>
+        <ion-label floating>Police Registration Number</ion-label>
+        <ion-input type="text" [(ngModel)]="newAccommodation.policeID"></ion-input>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -39,10 +48,10 @@
     <button ion-button (click)="addAccommodation()">Add!</button>
   </ion-row>
   <ion-list>
-    <ion-item-sliding *ngFor="let a of accomodationsList | async">
+    <ion-item-sliding *ngFor="let a of accomodationsList">
       <ion-item>
-        <h1>{{ a.$value.street }}, {{ a.$value.number }}</h1>
-        <p>{{ a.$value.city }} ({{ a.$value.zipCode }})</p>
+        <h1>{{ a.street }}, {{ a.number }}</h1>
+        <p>{{ a.city }} ({{ a.zipCode }})</p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" icon-only (click)="removeAccommodation(a.$key)">

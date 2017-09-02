@@ -15,14 +15,17 @@ export class FirebaseServiceProvider {
   constructor(public afd: AngularFireDatabase) { 
     
   }
-
+  
   public getAccomodationsList(){
     return this.afd.list(this.username + '/accommodations/');
   }
 
+  public getAccomodationObject(id){
+    return this.afd.object(this.username + '/accommodations/'+ id);
+  }
+
   public addAccommodation(accommodationObject){
     this.afd.list(this.username + '/accommodations/').push(accommodationObject);
-    this.afd
   }
 
   public removeAccommodation(accommodationId){
