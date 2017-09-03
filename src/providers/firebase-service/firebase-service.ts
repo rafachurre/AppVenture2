@@ -1,3 +1,4 @@
+import { ToastController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 
@@ -12,7 +13,7 @@ export class FirebaseServiceProvider {
 
   private username: string = "" ;
 
-  constructor(public afd: AngularFireDatabase) { 
+  constructor(public afd: AngularFireDatabase, public toastCtrl: ToastController) { 
     
   }
   
@@ -26,10 +27,20 @@ export class FirebaseServiceProvider {
 
   public addAccommodation(accommodationObject){
     this.afd.list(this.username + '/accommodations/').push(accommodationObject);
+    this.presentToast("Accommodation saved successfully!!");
   }
 
   public removeAccommodation(accommodationId){
     this.afd.list(this.username + '/accommodations/').remove(accommodationId);
+  }
+
+  // Condifmation messges
+  private presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000
+    });
+    toast.present();
   }
 
 }
