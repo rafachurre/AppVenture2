@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { SaveAccommodationPage } from './../save-accommodation/save-accommodation';
+import { HomePage } from './../home/home';
 
 /**
  * Generated class for the SettingsPage page.
@@ -21,7 +22,6 @@ export class SettingsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
     this.accommodationPage = SaveAccommodationPage;
-
   }
 
   ionViewDidLoad() {
@@ -35,6 +35,10 @@ export class SettingsPage {
   openModal(){
     const myModal = this.modalCtrl.create("SaveAccommodationPage");
     myModal.present();
+
+    myModal.onDidDismiss((data) => {
+      this.navCtrl.setRoot(HomePage);
+    })
   }
 
 }

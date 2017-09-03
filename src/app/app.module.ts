@@ -8,6 +8,9 @@ import { AngularFireModule } from 'angularfire2';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';
+import { AccommodationOptionsPage } from './../pages/accommodation-options/accommodation-options';
+import { SaveGuestPage } from './../pages/save-guest/save-guest';
+import { DocumentsPage } from './../pages/documents/documents';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,7 +29,10 @@ const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    SettingsPage
+    SettingsPage,
+    AccommodationOptionsPage,
+    SaveGuestPage,
+    DocumentsPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,10 @@ const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    SettingsPage
+    SettingsPage,
+    AccommodationOptionsPage,
+    SaveGuestPage,
+    DocumentsPage
   ],
   providers: [
     StatusBar,

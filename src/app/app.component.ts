@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { SettingsPage } from './../pages/settings/settings';
+import { FirebaseServiceProvider } from './../providers/firebase-service/firebase-service';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +18,7 @@ export class MyApp {
   rootPages: Array<{ title: string, icon: string, component: any }>;
   navPages: Array<{ title: string, icon: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public fbs: FirebaseServiceProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and rootPages
@@ -29,7 +30,6 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.navPages = [
     ];
-
   }
 
   initializeApp() {
@@ -47,5 +47,9 @@ export class MyApp {
 
   navToPage(page) {
     this.nav.push(page.component);
+  }
+
+  onSyncPressed(){
+    this.fbs.syncData();
   }
 }
