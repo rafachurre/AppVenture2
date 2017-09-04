@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
+import { DocumentDetailsPage } from './../document-details/document-details';
 
 /**
  * Generated class for the DocumentsPage page.
@@ -25,9 +26,14 @@ export class DocumentsPage {
   ionViewDidLoad() {
     var that = this;
     this.fds.getDocumentsByAccommodationList(this.navParams.get("accommodationKey")).on("child_added", function(data) {
-      console.log(data.val());
       that.documents.push(data);
     });
+  }
+
+  onDocumentClicked(documentKey){
+    this.navCtrl.push(DocumentDetailsPage, {
+      documentKey: documentKey
+    })
   }
 
 }

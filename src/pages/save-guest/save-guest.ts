@@ -1,7 +1,8 @@
-import { DocumentsPage } from './../documents/documents';
 import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+import { SignaturePadPage } from './../signature-pad/signature-pad';
 
 /**
  * Generated class for the SaveGuestPage page.
@@ -38,17 +39,18 @@ export class SaveGuestPage {
       idType: this.register.idType,
       idDateOfIssue: this.register.idDateOfIssue,
       status: "Not Signed",
-      registrationDate: new Date(),
+      registrationDate: (new Date()).toString(),
       signaturePic: "",
       signedDate: "",
       submittedDate: "",
     };
 
-    this.fbs.addDocument(newRegistration)
+    let documentKey = this.fbs.addDocument(newRegistration);
 
-    this.navCtrl.pop();
-    this.navCtrl.push(DocumentsPage, {
-      accommodationKey: this.navParams.get("accommodationKey")
+    this.navCtrl.push(SignaturePadPage, {
+      accommodationKey: this.navParams.get("accommodationKey"),
+      newRegistration: newRegistration,
+      documentKey: documentKey
     })
   }
 

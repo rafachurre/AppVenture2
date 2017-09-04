@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-list no-lines>
     <ion-item-sliding *ngFor="let d of documents">
-      <ion-item>
+      <ion-item (click)="onDocumentClicked(d.key)">
         <ion-thumbnail item-start>
           <img src="assets/icon/pdf-icon.png">
         </ion-thumbnail>

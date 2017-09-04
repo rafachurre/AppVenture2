@@ -56,8 +56,14 @@ export class FirebaseServiceProvider {
   }
 
   public addDocument(documentObject) {
-    this.afd.list(this.username + '/documents/').push(documentObject);
+    let addedDocumentKey = this.afd.list(this.username + '/documents/').push(documentObject).key;
     this.presentToast("Document registered !!");
+    return addedDocumentKey;
+  }
+
+  public updateDocument(documentKey, data) {
+    this.afd.object(this.username + '/documents/' + documentKey + "/").update(data);
+    this.presentToast("Document updated !!");
   }
 
   public removeDocument(id) {
